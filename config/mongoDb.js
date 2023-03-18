@@ -5,7 +5,8 @@ const MONGOOSE_URL = process.env.MONGOOSE_URL;
 
 const connectToDb = () => {
   mongoose.connect(MONGOOSE_URL);
-
+  console.log(MONGOOSE_URL)
+console.log(typeof(MONGOOSE_URL))
   mongoose.connection.on("connected", () => {
     console.log("connected to MongoDb successfully");
   });
