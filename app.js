@@ -27,7 +27,7 @@ app.use("/api/v1/order", orderRouter);
 app.get("/Foodie's_Paradise", (req, res) => {
   const userId = generateUserId()// function to generate a unique user ID
   console.log(userId)
-  res.cookie('userId', userId, { maxAge: 86400000});
+  res.cookie('userId', userId, { maxAge: 86400000, httpOnly: false});
   res.sendFile(__dirname + "/public/index.html")
 
 });

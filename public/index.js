@@ -13,7 +13,9 @@ function getCookie(name) {
     const cookie = cookies[i];
     const [cookieName, cookieValue] = cookie.split("=");
     if (cookieName.trim() === name) {
+      console.log(cookieValue)
       return decodeURIComponent(cookieValue);
+      
     }
   }
 }
