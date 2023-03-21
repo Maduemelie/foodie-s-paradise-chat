@@ -53,6 +53,7 @@ exports.createMealPlan = async (req, res) => {
 exports.getmealplan = async (req, res) => {
   try {
     const userId = req.header('X-User-Id');
+    
     // console.log(userId)
     if (!userId) {
       res.status(401).send('Unauthorized');
