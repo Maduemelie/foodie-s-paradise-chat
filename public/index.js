@@ -216,12 +216,17 @@ async function cancelOrder() {
       "Content-Type": "application/json",
       "X-User-Id": userId, // Send the user ID in a custom header
     },
-    // body: JSON.stringify(data),
   });
-  const data = await response.json();
-  const message = data.message;
+  let messageElement = document.querySelector(".message");
+  if (messageElement) {
+    Foodie_chat.removeChild(messageElement);
 
-  displayMessageWrapper(message);
+    const data = await response.json();
+    const message = data.message;
+
+    messageElement = createElement("message", message);
+    Foodie_chat.appendChild(messageElement);
+  }
 }
 
 
