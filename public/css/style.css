@@ -1,0 +1,215 @@
+/* General Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f2f2f2;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 3rem;
+}
+/* new css rule */
+::placeholder {
+  color: #ff9519;
+}
+.Foodies_chat_main_page {
+  height: 100vh;
+  width: 100%;
+}
+
+.Welcome_page {
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome_page_box {
+  width: 40%;
+  height: 60%;
+  border-radius: 8px;
+  background: linear-gradient(168.68deg, #cb997e 1.12%, #ffe8d6 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.name_input {
+  background-color: #ffe8d6;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  height: 30px;
+  width: 60%;
+  font-size: 16px;
+  padding: 8px;
+  backdrop-filter: blur(5px);
+}
+
+.Enter_button {
+  margin-top: 50px;
+  width: 50%;
+  height: 55px;
+  border-radius: 15px;
+  background: #ffffff;
+  color: #ff9519;
+  font-size: 20px;
+  border: none;
+  transition: 0.3s;
+}
+
+.welcome_message {
+  background-image: url("../imgs/vegetable.jpg");
+  /* opacity: 0.5; */
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-size: cover;
+  height: 180px;
+  width: 400px;
+  /* overflow: hidden; */
+  color: #fff;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+/* .welcome_message {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("../imgs/vegetable.jpg");
+  
+   
+  text-align: center;
+   */
+/* display: flex;
+  align-items: center;
+  justify-content: center; 
+} */
+
+.welcome_message::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity here */
+  z-index: -1;
+}
+
+.welcome_message h2 {
+  font-size: 15px;
+  margin-bottom: 5px;
+  z-index: 2;
+}
+
+.welcome_message ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+}
+
+.welcome_message li {
+  font-size: 12px;
+  margin-bottom: 5px;
+  z-index: 2;
+}
+
+.display_none {
+  display: none;
+}
+.display_flex {
+  display: flex;
+}
+/* end */
+/* Chatbot Styles */
+.Foodie_chat {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.select ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.select li {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.output {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  max-width: 500px;
+  color: #444;
+}
+
+input[type="number"] {
+  width: 70%;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+/* New colors */
+.Foodie_chat {
+  --primary-color: #fb8500;
+  --secondary-color: #023047;
+  --tertiary-color: #219ebc;
+}
+
+.select li:nth-child(odd) {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+.btn {
+  background-color: var(--primary-color);
+}
+
+.btn:hover {
+  background-color: var(--tertiary-color);
+}
