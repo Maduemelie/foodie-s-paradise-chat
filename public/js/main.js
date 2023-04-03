@@ -10,7 +10,6 @@ const enterChat = document.getElementById("enter_chat_button");
 
 enterChat.addEventListener("click", (e) => {
   ui.foodiesChatPage()
-  // socketHandler.connectToSocketIoServer();
 });
 
 
