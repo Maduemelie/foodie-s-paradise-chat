@@ -1,20 +1,13 @@
 const express = require("express");
-const {checkMessageContent} = require('./controllers/botResponse')
+const { checkMessageContent } = require("./controllers/botResponse");
 const cors = require("cors");
 
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const connectToDb = require("./config/mongoDb");
-// const sessionMiddleWare = require("./config/session");
-// const mealRouter = require("./routes/mealPlanRoutes");
-// const foodRouter = require("./routes/foodRoutes");
-// const orderRouter = require("./routes/orderRouter");
-// const { generateUserId } = require("./utils/userId");
 
 require("dotenv").config();
-// const app = express();
-
 const PORT = process.env.PORT || 4000;
 require("dotenv").config();
 const session = require("express-session");
@@ -55,14 +48,17 @@ io.on("connection", (socket) => {
   console.log(socket.id);
 
   socket.on("input-value", async (data) => {
-    // console.log(data)
     const { messageContent, author } = data;
     const sessionData = socket.request.session;
     sessionData.username = author;
-    const clientSideData = await checkMessageContent(messageContent)
-    // console.log(clientSideData)
-    socket.emit("input-value", clientSideData)
-    
+
+    const clientSideData = await checkMessageContent(messageContent, socket);
+
+    if (clientSideData.type === "input-value") {
+      socket.emit("input-value", clientSideData.data);
+    } else if (clientSideData.type === "optionsData") {
+      socket.emit("optionsData", clientSideData.data);
+    }
   });
 });
 

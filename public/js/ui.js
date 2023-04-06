@@ -43,9 +43,9 @@ const appendMessages = () => {
 };
 const appendServerData = (serverData) => {
   const foodItems = Object.values(serverData.meals).flat();
-  const foodList = foodItems
-    .map((item, index) => `${index + 1}. ${item}`)
-    .join(`</br>`);
+  const foodList =
+    `<h4>Select meals with comma separated number. e.g 1,3,5</h4>` +
+    foodItems.map((item, index) => `${index + 1}. ${item}`).join(`</br>`);
 
   const data = {
     author: "Foodie's-Bot",
@@ -56,10 +56,28 @@ const appendServerData = (serverData) => {
   const messageContainer = document.getElementById("message_container_id");
   const newMessage = element.createNewMessageContainer(data);
   messageContainer.appendChild(newMessage);
+  return foodItems;
+};
+
+const appendOptionsData = (optionData) => {
+  const selectedFoods = optionData.map((food) =>  food).join("</br>");
+  
+  
+  const foodList = `<h4>You placed the following orders:</h4> ${selectedFoods}`;
+
+  const data = {
+    author: "Foodie's-Bot",
+    messageContent: foodList,
+    messageClassName: "Foodies-Bot",
+  };
+  const messageContainer = document.getElementById("message_container_id");
+  const newMessage = element.createNewMessageContainer(data);
+  messageContainer.appendChild(newMessage);
 };
 
 export default {
   foodiesChatPage,
   appendMessages,
   appendServerData,
+  appendOptionsData,
 };
