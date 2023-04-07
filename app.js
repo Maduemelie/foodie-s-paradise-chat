@@ -44,6 +44,8 @@ app.use(express.static("public"));
 app.get("/Foodie's_Paradise", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
+
+
 io.on("connection", (socket) => {
   console.log(socket.id);
 
@@ -51,16 +53,45 @@ io.on("connection", (socket) => {
     const { messageContent, author } = data;
     const sessionData = socket.request.session;
     sessionData.username = author;
-
     const clientSideData = await checkMessageContent(messageContent, socket);
-
-    if (clientSideData.type === "input-value") {
-      socket.emit("input-value", clientSideData.data);
-    } else if (clientSideData.type === "optionsData") {
-      socket.emit("optionsData", clientSideData.data);
+    if (clientSideData) {
+      if (sessionData.selectedFoods) {
+        socket.emit("input-value", { message: "You already have selected foods." });
+      } else {
+        socket.emit("input-value", clientSideData);
+      }
     }
   });
+
+  socket.on("selection", async (data) => {
+    
+    socket.request.session.selectedFoods =data;
+  });
 });
+// io.on("connection", (socket) => {
+//   console.log(socket.id);
+
+//   socket.on("input-value", async (data) => {
+//     const { messageContent, author } = data;
+//     const sessionData = socket.request.session;
+//     sessionData.username = author;
+
+//     const clientSideData = await checkMessageContent(messageContent, socket);
+
+//     if (clientSideData.type === "input-value") {
+//       socket.emit("input-value", clientSideData.data);
+//     } else if (clientSideData.type === "optionsData") {
+//       socket.emit("optionsData", clientSideData.data);
+//     }
+//     // else if (clientSideData.type === "selection") {
+//     //   socket.emit("selection", clientSideData.data);
+//     // }
+//   });
+
+//   socket.on("selection", (data) => {
+//     console.log(data, "app");
+//   });
+// });
 
 /** catch 404 and forward to error handler */
 app.use("*", (req, res) => {

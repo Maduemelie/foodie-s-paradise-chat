@@ -1,18 +1,11 @@
 const Order = require("../models/orderModel");
 const Food = require("../models/foodModel");
 
-exports.createOrder = async (req, res) => {
-  try {
-    const userId = req.header("X-User-Id");
-    // console.log(userId)
-    if (!userId) {
-      res.status(401).send("Unauthorized");
-      return;
-    }
-    let { customerName, orderItems, totalPrice } = req.body;
-    if (orderItems.length === 0) return;
-    orderItems = await Promise.all(
-      orderItems.map(async (foodName) => {
+exports.createOrder = async (selectedFoods, totalPrice) => {
+  try { 
+    if (selectedFoods.length === 0) return;
+    selectedFoods = await Promise.all(
+      selectedFoods.map(async (foodName) => {
         // console.log(foodName)
         let food = await Food.findOne({ name: foodName });
         console.log(food.name);
@@ -20,16 +13,14 @@ exports.createOrder = async (req, res) => {
       })
     );
     const order = await Order.create({
-      customerName,
-      orderItems,
-      totalPrice,
+      
+      orderItems :selectedFoods,
+      totalPrice
+      
     });
-    res.status(200).json({
-      status: "Success",
-      data: order,
-    });
+    return order
   } catch (error) {
-    res.status(500).json(error.message);
+   return error.message
   }
 };
 
@@ -45,7 +36,7 @@ exports.userOrderHistory = async (req, res) => {
     customerName = userId;
     // Find all orders for the current user
     const orders = await Order.find({ customerName }).populate("orderItems");
-console.log(orders)
+    console.log(orders);
     // Map the orders to a more readable format
     const formattedOrders = orders.map((order) => ({
       id: order._id,
@@ -104,8 +95,7 @@ exports.getCurrentOrder = async (req, res) => {
 
 exports.cancelOrder = async (req, res) => {
   try {
-
-    let customerName = req.params.id
+    let customerName = req.params.id;
     // Get the user ID from the request headers
     const userId = req.header("X-User-Id");
     if (!userId) {

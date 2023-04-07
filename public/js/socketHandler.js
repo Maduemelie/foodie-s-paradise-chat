@@ -17,6 +17,10 @@ const connectToSocketIoServer = () => {
     socket.on("optionsData", data => {
       console.log(data)
       ui.appendOptionsData(data)
+      
+    })
+    socket.on("orderData", data => {
+      console.log(data)
     })
   });
 };
@@ -24,11 +28,12 @@ const connectToSocketIoServer = () => {
 const sendMessages = (data) => {
   socket.emit("input-value", data);
 };
-// const selectedFoodItems = (data) => {
-//   socket.emit("selected-food-items", data)
-// };
+const selectedFoodItems = (data) => {
+  socket.emit('selection', data)
+};
 
 export default {
   connectToSocketIoServer,
   sendMessages,
+  selectedFoodItems
 };

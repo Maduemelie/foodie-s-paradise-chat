@@ -60,10 +60,11 @@ const appendServerData = (serverData) => {
 };
 
 const appendOptionsData = (optionData) => {
-  const selectedFoods = optionData.map((food) =>  food).join("</br>");
+  const selectedFoods = optionData.map((food) => `</br>${food.name}:  ${food.price}`);
+  const foodList = `<h4>You placed the following orders:</h4> ${selectedFoods}.`;
   
   
-  const foodList = `<h4>You placed the following orders:</h4> ${selectedFoods}`;
+  
 
   const data = {
     author: "Foodie's-Bot",
@@ -72,6 +73,7 @@ const appendOptionsData = (optionData) => {
   };
   const messageContainer = document.getElementById("message_container_id");
   const newMessage = element.createNewMessageContainer(data);
+  socketHandler.selectedFoodItems(optionData)
   messageContainer.appendChild(newMessage);
 };
 
