@@ -46,7 +46,7 @@ const appendServerData = (serverData) => {
   const foodList =
     `<h4>Select meals with comma separated number. e.g 1,3,5</h4>` +
     foodItems.map((item, index) => `${index + 1}. ${item}`).join(`</br>`);
-
+  // console.log(foodList);
   const data = {
     author: "Foodie's-Bot",
     messageContent: foodList,
@@ -60,11 +60,12 @@ const appendServerData = (serverData) => {
 };
 
 const appendOptionsData = (optionData) => {
-  const selectedFoods = optionData.map((food) => `</br>${food.name}:  ${food.price}`);
+  // console.log(optionData, "option");
+
+  const selectedFoods = optionData.map(
+    (food) => `</br>${food.name}:  ${food.price}`
+  );
   const foodList = `<h4>You placed the following orders:</h4> ${selectedFoods}.`;
-  
-  
-  
 
   const data = {
     author: "Foodie's-Bot",
@@ -73,13 +74,97 @@ const appendOptionsData = (optionData) => {
   };
   const messageContainer = document.getElementById("message_container_id");
   const newMessage = element.createNewMessageContainer(data);
-  socketHandler.selectedFoodItems(optionData)
+  socketHandler.selectedFoodItems(optionData);
   messageContainer.appendChild(newMessage);
 };
+
+const appendOrderData = (orderData) => {
+  // console.log(orderData);
+  const { selectedFoods, totalPrice } = orderData;
+  const foods = selectedFoods.map(
+    (food) => `</br>${food.name}:  ${food.price}`
+  );
+  const order = `<h4>Your Order:</h4> ${foods}.</br></br> Total: $${totalPrice}</br></br>Thanks for your patronage`;
+
+  const data = {
+    author: "Foodie's-Bot",
+    messageContent: order,
+    messageClassName: "Foodies-Bot",
+  };
+  const messageContainer = document.getElementById("message_container_id");
+  const newMessage = element.createNewMessageContainer(data);
+  // socketHandler.selectedFoodItems(optionData);
+  messageContainer.appendChild(newMessage);
+};
+
+const appendOrderHistoryData = (orderHistory) => {
+  // console.log(orderHistory);
+  const { formattedOrders } = orderHistory;
+  // console.log(customerName);
+
+  const orders = formattedOrders.map((order) => {
+    return order;
+  });
+  // console.log(orders)
+  const formattedOrderHistory = orders.map((order) => {
+    const foods = order.items
+      .map((food) => {
+        return `${food.name}: ($${food.price.toFixed(2)})`;
+      })
+      .join(`<br>`);
+    const date = new Date(order.timestamp).toLocaleString();
+    return `Order placed on ${date} <br>Food ordered: <br><br> ${foods}.<br><br> Total: $${order.total.toFixed(
+      2
+    )}.<br><br> Status: ${order.status}.<br><br>`;
+  });
+  const data = {
+    author: "Foodie's-Bot",
+    messageContent: formattedOrderHistory,
+    messageClassName: "Foodies-Bot",
+  };
+  const messageContainer = document.getElementById("message_container_id");
+  const newMessage = element.createNewMessageContainer(data);
+  // socketHandler.selectedFoodItems(optionData);
+  messageContainer.appendChild(newMessage);
+
+  // console.log(formattedOrderHistory);
+};
+const appendCurrentOrder = (currentOrderData) => {
+  const { items, total } = currentOrderData;
+
+  const foods = items.map((food) => `</br>${food.name}:  $${food.price}`);
+  const currentOrder = `<h4>Your last Order:</h4> ${foods}.</br></br> Total: $${total}</br></br>`;
+  const data = {
+    author: "Foodie's-Bot",
+    messageContent: currentOrder,
+    messageClassName: "Foodies-Bot",
+  };
+  const messageContainer = document.getElementById("message_container_id");
+  const newMessage = element.createNewMessageContainer(data);
+  // socketHandler.selectedFoodItems(optionData);
+  messageContainer.appendChild(newMessage);
+
+};
+const appendOrderCancel = (cancelData) => {
+  const { message } = cancelData
+  const data = {
+    author: "Foodie's-Bot",
+    messageContent: message,
+    messageClassName: "Foodies-Bot",
+  };
+  const messageContainer = document.getElementById("message_container_id");
+  const newMessage = element.createNewMessageContainer(data);
+  // socketHandler.selectedFoodItems(optionData);
+  messageContainer.appendChild(newMessage);
+}
 
 export default {
   foodiesChatPage,
   appendMessages,
   appendServerData,
   appendOptionsData,
+  appendOrderData,
+  appendOrderHistoryData,
+  appendCurrentOrder,
+  appendOrderCancel,
 };

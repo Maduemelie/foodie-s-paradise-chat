@@ -11,16 +11,29 @@ const connectToSocketIoServer = () => {
     store.setSocketId(socket.id);
 
     socket.on("input-value", (data) => {
-      console.log(data);
+      // console.log(data);
       ui.appendServerData(data);
     });
     socket.on("optionsData", data => {
-      console.log(data)
+      // console.log(data ,"option")
       ui.appendOptionsData(data)
       
     })
     socket.on("orderData", data => {
+     ui.appendOrderData(data)
+    })
+
+    socket.on("orderHistory", data => {
+      // console.log(data)
+     ui.appendOrderHistoryData(data)
+    })
+    socket.on("currentOrder", data => {
       console.log(data)
+      ui.appendCurrentOrder(data)
+    })
+    socket.on("orderCancelled", data => {
+      ui.appendOrderCancel(data)
+      // console.log(data.message)
     })
   });
 };
