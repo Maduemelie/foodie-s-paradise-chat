@@ -32,8 +32,9 @@ const sessionMiddleWare = session({
 app.use(sessionMiddleWare);
 io.engine.use(sessionMiddleWare);
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
 // app.use("/api/v1/mealplan", mealRouter);
 // app.use("/api/v1/food", foodRouter);
 // app.use("/api/v1/order", orderRouter);

@@ -143,10 +143,9 @@ const appendCurrentOrder = (currentOrderData) => {
   const newMessage = element.createNewMessageContainer(data);
   // socketHandler.selectedFoodItems(optionData);
   messageContainer.appendChild(newMessage);
-
 };
 const appendOrderCancel = (cancelData) => {
-  const { message } = cancelData
+  const { message } = cancelData;
   const data = {
     author: "Foodie's-Bot",
     messageContent: message,
@@ -156,7 +155,7 @@ const appendOrderCancel = (cancelData) => {
   const newMessage = element.createNewMessageContainer(data);
   // socketHandler.selectedFoodItems(optionData);
   messageContainer.appendChild(newMessage);
-}
+};
 
 export default {
   foodiesChatPage,
