@@ -1,10 +1,10 @@
 import store from "./store.js";
 import ui from "./ui.js";
 
-let socket = io("/");
+let socket = null;
 
 const connectToSocketIoServer = () => {
-  
+  socket = io("/");
   socket.on("connect", () => {
     // Listening for the "connect" event
     console.log("connected", socket.id); // Logging the socket ID to the console
