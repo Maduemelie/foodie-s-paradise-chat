@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const app = express();
 const server = require("http").createServer(app);
-const io = require("socket.io")(server,  {cors : {origin : "*" }});
+const io = require("socket.io")(server, { cors: { origin: "*" } });
 const connectToDb = require("./config/mongoDb");
 
 require("dotenv").config();
@@ -21,14 +21,11 @@ const store = new mongoDbStore({
 const sessionMiddleWare = session({
   secret: process.env.MY_SESSION_SECERT,
   store,
-  name: "Foodies Paradise",
+
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
-    secure: false,
     maxAge: 86400000,
-    sameSite: "none",
-    httpOnly: false,
   },
 });
 // app.use(cors());
@@ -45,7 +42,6 @@ app.get("/Foodie's_Paradise", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-
 io.on("connection", (socket) => {
   console.log(socket.id);
 
@@ -56,7 +52,9 @@ io.on("connection", (socket) => {
     const clientSideData = await checkMessageContent(messageContent, socket);
     if (clientSideData) {
       if (sessionData.selectedFoods) {
-        socket.emit("input-value", { message: "You already have selected foods." });
+        socket.emit("input-value", {
+          message: "You already have selected foods.",
+        });
       } else {
         socket.emit("input-value", clientSideData);
       }
@@ -64,8 +62,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("selection", async (data) => {
-    
-    socket.request.session.selectedFoods =data;
+    socket.request.session.selectedFoods = data;
   });
 });
 // io.on("connection", (socket) => {
