@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const app = express();
 const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(server,  {cors : {origin : "*" }});
 const connectToDb = require("./config/mongoDb");
 
 require("dotenv").config();
@@ -31,7 +31,7 @@ const sessionMiddleWare = session({
     httpOnly: false,
   },
 });
-app.use(cors());
+// app.use(cors());
 app.use(sessionMiddleWare);
 io.engine.use(sessionMiddleWare);
 app.use(express.json());
