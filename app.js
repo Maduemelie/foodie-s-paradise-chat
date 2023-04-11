@@ -1,6 +1,6 @@
 const express = require("express");
 const { checkMessageContent } = require("./controllers/botResponse");
-const cors = require("cors");
+
 
 const app = express();
 const server = require("http").createServer(app);

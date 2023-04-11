@@ -1,7 +1,8 @@
+let socket = null;
 import store from "./store.js";
 import ui from "./ui.js";
 
-let socket = null;
+
 
 const connectToSocketIoServer = () => {
   socket = io("/");
