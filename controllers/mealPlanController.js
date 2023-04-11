@@ -50,17 +50,8 @@ exports.createMealPlan = async (req, res) => {
   }
 };
 
-exports.getmealplan = async (req, res) => {
+exports.getmealplan = async (day) => {
   try {
-    const userId = req.header('X-User-Id');
-    
-    // console.log(userId)
-    if (!userId) {
-      res.status(401).send('Unauthorized');
-      return;
-    }
-    const { day } = req.params;
-    // Find the MealPlan document by day
     const mealPlan = await MealPlan.findOne({ day }).populate(
       "meals.morning meals.afternoon meals.evening"
     );
@@ -75,21 +66,19 @@ exports.getmealplan = async (req, res) => {
       (food) => `${food.name} - $${food.price}`
     );
 
-    // console.log(morningMeal, afternoonMeal, eveninggMeal)
-    res.status(200).json({
+    return {
       status: "success",
       meals: {
         morning: morningFoods,
         afternoon: afternoonFoods,
         evening: eveningFoods,
       },
-    });
-    // Return the MealPlan document
+    };
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return {
       message: "Fail",
       error,
-    });
+    };
   }
 };

@@ -5,33 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foodie's Paradise</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="Foodie_chat">
-      <h1>Foodie's Paradise</h1>
-      <div class="select">
-        <ul>
-          <li>Select 1 to place an order</li>
-          <li>Select 99 to checkout an order</li>
-          <li>Select 98 to see order history</li>
-          <li>Select 97 to see current order</li>
-          <li>Select 0 to cancel order</li>
-        </ul>
+    <div class="Foodies_chat_main_page">
+      <div class="Welcome_page">
+        <div class="welcome_page_box">
+          <input
+            type="text"
+            class="name_input"
+            placeholder="Enter your name...."
+          />
+          <button class="Enter_button" id="enter_chat_button">
+            Enter our chat page
+          </button>
+        </div>
       </div>
-      <div class="output-container"hidden>
-        <div class="output" ></div>
-    
-        <button class="btn" ></button>
-      
-    </div>
-      <div>
-        <input type="number" id="inputNum" placeholder="number" />
-        <input type="submit" value="send" onclick="handleInput()" />
+
+      <div class="foodies_chat_page display_none">
+        <div class="foodies_chat_messages_container">
+          <div class="welcome_message">
+            <h2>
+              Hello <span id="username"></span>, welcome to Foodie's Paradise
+            </h2>
+            <p>
+              Please go through the options and let me know how I can be of help
+              today.
+            </p>
+            <ul>
+              <li>To place an order, select 1.</li>
+              <li>To checkout an order, select 99.</li>
+              <li>To see order history, select 98.</li>
+              <li>To see current order, select 97.</li>
+              <li>To cancel an order, select 0.</li>
+            </ul>
+          </div>
+
+         <div class="messages_container" id="messages_container_id">
+            <div class="messages_label_container">
+              <p class="messages_label">Foodies Chat</p>
+            </div>
+            <div class="message_container" id="message_container_id">
+            </div>
+            <div class="new_message_input_container">
+              <input type="text" class="new_message_input" id="new_message_input_id" placeholder="Type your message...">
+            </div>
+          </div> 
+          </div>
+        </div>
       </div>
     </div>
-    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-    <!-- <script type="module"  src="../controllers/mealPlanController.js"></script> -->
-   <script src="index.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

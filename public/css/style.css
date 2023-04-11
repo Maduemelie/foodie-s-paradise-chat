@@ -1,0 +1,188 @@
+/* new css rule */
+::placeholder {
+  color: #ff9519;
+}
+.Foodies_chat_main_page {
+  height: 100vh;
+  width: 100%;
+}
+.foodies_chat_messages_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+
+.Welcome_page {
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome_page_box {
+  width: 40%;
+  height: 60%;
+  border-radius: 8px;
+  background: linear-gradient(168.68deg, #cb997e 1.12%, #ffe8d6 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.name_input {
+  background-color: #ffe8d6;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  height: 30px;
+  width: 60%;
+  font-size: 16px;
+  padding: 8px;
+  backdrop-filter: blur(5px);
+}
+
+.Enter_button {
+  margin-top: 50px;
+  width: 50%;
+  height: 55px;
+  border-radius: 15px;
+  background: #ffffff;
+  color: #ff9519;
+  font-size: 20px;
+  border: none;
+  transition: 0.3s;
+}
+
+.welcome_message {
+  background-image: url("../imgs/vegetable.jpg");
+  /* opacity: 0.5; */
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-size: cover;
+  height: 40%;
+  /* width: 300px; */
+  max-width: 350px;
+  margin: 20px auto 30px auto;
+  text-align: center;
+  padding: 20px;
+  /* overflow: hidden; */
+  color: #fff;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+.welcome_message::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity here */
+  z-index: -1;
+}
+
+.welcome_message h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  z-index: 2;
+}
+
+.welcome_message ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+}
+
+.welcome_message li {
+  font-size: 15px;
+  margin-bottom: 5px;
+  z-index: 2;
+}
+
+.messages_container {
+  position: absolute;
+  bottom: 1px;
+  right: 300px;
+  background: #ffe8d6;
+  margin: 0 10px;
+  width: 50%;
+  height: 50%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: 1px solid #e5e5e5;
+  /* overflow-y: scroll; */
+}
+.messages_label_container {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(168.68deg, #b7b7a4 1.12%, #cb997e 100%);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.messages_label {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-align: center;
+  font-size: 18px;
+}
+.message_container {
+  width: 100%;
+  height: 75%;
+  overflow-y: scroll;
+}
+.new_message_input_container {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.new_message_input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d5deeb;
+  background-color: #ffffff;
+  font-size: 16px;
+}
+.Foodies-Bot {
+  text-align: left;
+
+  background: rgb(218, 198, 198);
+  border-radius: 8px 8px 8px 0px;
+  border: 1px solid #d5deeb;
+  color: black;
+  margin: 5px;
+  padding: 8px; 
+}
+.user_messages {
+  text-align: right;
+  background: linear-gradient(168.68deg, #0052c9 1.12%, #0a91db 100%);
+  border-radius: 8px 8px 0px 8px;
+  color: white;
+  margin: 5px;
+  padding: 8px;
+  
+}
+
+.display_none {
+  display: none;
+}
+.display_flex {
+  display: flex;
+}
