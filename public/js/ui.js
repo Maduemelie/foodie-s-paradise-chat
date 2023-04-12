@@ -65,7 +65,7 @@ const appendOptionsData = (optionData) => {
   const selectedFoods = optionData.map(
     (food) => `</br>${food.name}:  ${food.price}`
   );
-  const foodList = `<h4>You selected the following food items:</h4> ${selectedFoods}.`;
+  const foodList = `<h4>You selected the following food items:</h4> ${selectedFoods}. </br></br> Input 99 to checkout your order.`;
 
   const data = {
     author: "Foodie's-Bot",
