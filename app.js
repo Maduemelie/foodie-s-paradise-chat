@@ -1,7 +1,6 @@
 const express = require("express");
 const { checkMessageContent } = require("./controllers/botResponse");
 
-
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: { origin: "*" } });
@@ -34,8 +33,6 @@ io.engine.use(sessionMiddleWare);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
-
 
 app.get("/Foodie's_Paradise", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
